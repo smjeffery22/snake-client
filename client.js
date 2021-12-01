@@ -12,8 +12,17 @@ const connect = function () {
 
   conn.on("connect", () => {
     console.log("Connection successfully established.");
+    
     conn.write("Name: JP")
-  })
+
+    // setTimeout(() => {
+    //   conn.write("Move: up")
+    // }, 1000);
+
+    // setInterval(() => {
+    //   conn.write("Move: left")
+    // }, 1);
+  });
 
   conn.on("data", (data) => {
     console.log(data);
