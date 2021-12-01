@@ -10,15 +10,16 @@ const connect = function () {
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
+  conn.on("connect", () => {
+    console.log("Connection successfully established.");
+    conn.write("Name: JP")
+  })
+
   conn.on("data", (data) => {
     console.log(data);
   });
 
-  conn.on("end", () => {
-    console.log("Ended the game.");
-  })
-
-  return conn;
+    return conn;
 };
 
 module.exports = connect;
