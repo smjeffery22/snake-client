@@ -1,4 +1,5 @@
 const readline = require('readline');
+const { mvntKeys, msgKeys } = require("./constants");
 
 let connection;
 
@@ -10,7 +11,7 @@ const setupInput = (conn) => {
   stdin.resume();
   stdin.on("data", handleUserInput);
   return stdin;
-}
+};
 
 // // setup interface to handle user input from stdin
 // const setupInput = function() {
@@ -21,32 +22,16 @@ const handleUserInput = function(key) {
     process.exit();
   }
 
-  if (key === "w") {
-    connection.write("Move: up");
+  for (let mvntKey in mvntKeys) {
+    if (key === mvntKey) {
+      connection.write(mvntKeys[mvntKey]);
+    }
   }
 
-  if (key === "a") {
-    connection.write("Move: left");
-  }
-
-  if (key === "s") {
-    connection.write("Move: down");
-  }
-
-  if (key === "d") {
-    connection.write("Move: right");
-  }
-
-  if (key === "1") {
-    connection.write("Say: Hello!");
-  }
-
-  if (key === "2") {
-    connection.write("Say: Move!");
-
-  if (key === "3") {
-    connection.write("Say: Boo!");
-  }
+  for (let msgkey in msgKeys) {
+    if (key === msgkey) {
+      connection.write(msgKeys[msgkey]);
+    }
   }
 };
 
